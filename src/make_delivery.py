@@ -48,5 +48,6 @@ def make_delivery(payload: dict, fn: str):
         print("invalid Function in make delivery")
         print("transaction failed in delivery...sending rollback to inventory")
         celery_app.send_task("update_inventory",queue="q03",args=[payload,"rollback_inventory"])
+        return "FAIL_DELIVERY"
 
     
